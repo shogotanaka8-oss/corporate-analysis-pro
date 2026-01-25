@@ -1,3 +1,4 @@
+// DOM Elements
 const elements = {
     companyName: document.getElementById('company-name'),
     analysisDate: document.getElementById('analysis-date'),
@@ -7,27 +8,39 @@ const elements = {
     clearBtn: document.getElementById('clear-btn'),
     newBtn: document.getElementById('new-analysis-btn'),
     historyList: document.getElementById('history-list'),
+
+    // Mobile Tabs
+    tabs: document.querySelectorAll('.tab-btn'),
+    sections: document.querySelectorAll('.analysis-section'),
+
+    // Sync Tools
+    exportBtn: document.getElementById('export-btn'),
+    importBtn: document.getElementById('import-btn'),
+    importModal: document.getElementById('import-modal'),
+    importArea: document.getElementById('import-area'),
+    importConfirmBtn: document.getElementById('import-confirm-btn'),
+    importCancelBtn: document.getElementById('import-cancel-btn'),
+
     toast: null // Dynamically created
 };
 
 // App State
 let analyses = JSON.parse(localStorage.getItem('companyAnalyses_v2') || '[]');
-let currentEditingId = null; // To track if we are updating an existing entry
+let currentEditingId = null;
 let isAutoSaving = false;
 
 // Initialize
 function init() {
     createToastElement();
 
-    // Set default date to today
     const today = new Date().toISOString().split('T')[0];
     elements.analysisDate.value = today;
 
-    // Restore draft if exists
     restoreDraft();
-
     renderHistory();
     setupEventListeners();
+    setupMobileTabs();
+    setupSyncTools();
 }
 
 // Create Toast System
@@ -39,7 +52,7 @@ function createToastElement() {
         background: var(--primary-color); color: var(--bg-color); padding: 12px 24px;
         border-radius: 50px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        z-index: 1000;
+        z-index: 3000;
     `;
     document.body.appendChild(toast);
     elements.toast = toast;
@@ -54,21 +67,96 @@ function showToast(message, type = 'success') {
     }, 2500);
 }
 
+// Mobile Tabs Control
+function setupMobileTabs() {
+    elements.tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.target;
+
+            // Update buttons
+            elements.tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Update sections
+            elements.sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (sec.id === `sec-${target}`) {
+                    sec.classList.add('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+}
+
+// Data Sync Tools (Export/Import)
+function setupSyncTools() {
+    // Export: Copy to clipboard
+    elements.exportBtn.addEventListener('click', () => {
+        const data = localStorage.getItem('companyAnalyses_v2');
+        if (!data || data === '[]') {
+            showToast('エクスポートするデータがありません', 'error');
+            return;
+        }
+
+        navigator.clipboard.writeText(data).then(() => {
+            showToast('全データをコピーしました！');
+        }).catch(err => {
+            alert('コピーに失敗しました。以下のデータを手動でコピーしてください:\n\n' + data);
+        });
+    });
+
+    // Import: Open modal
+    elements.importBtn.addEventListener('click', () => {
+        elements.importModal.style.display = 'flex';
+        elements.importArea.value = '';
+        elements.importArea.focus();
+    });
+
+    elements.importCancelBtn.addEventListener('click', () => {
+        elements.importModal.style.display = 'none';
+    });
+
+    elements.importConfirmBtn.addEventListener('click', () => {
+        const input = elements.importArea.value.trim();
+        if (!input) return;
+
+        try {
+            const parsed = JSON.parse(input);
+            if (!Array.isArray(parsed)) throw new Error('Invalid data format');
+
+            if (confirm('現在のデータを上書きして、読み込んだデータを追加しますか？')) {
+                // Merge or Overwrite? Let's Merge by ID to avoid duplicates
+                const existingIds = new Set(analyses.map(a => a.id));
+                const newItems = parsed.filter(item => !existingIds.has(item.id));
+
+                analyses = [...newItems, ...analyses];
+                localStorage.setItem('companyAnalyses_v2', JSON.stringify(analyses));
+
+                renderHistory();
+                elements.importModal.style.display = 'none';
+                showToast(`${newItems.length}件のデータを読み込みました！`);
+            }
+        } catch (e) {
+            alert('データの形式が正しくありません。正しいデータを貼り付けてください。');
+        }
+    });
+}
+
 // Setup Event Listeners for Input Monitoring
 function setupEventListeners() {
     const allInputs = [...elements.dataInputs, ...elements.tableInputs, elements.companyName, elements.analysisDate];
     allInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            saveDraft();
-        });
+        input.addEventListener('input', saveDraft);
     });
 
     elements.saveBtn.addEventListener('click', saveAnalysis);
-    elements.clearBtn.addEventListener('click', clearForm);
+    elements.clearBtn.addEventListener('click', () => clearForm());
     elements.newBtn.addEventListener('click', () => {
         if (elements.companyName.value.trim() || elements.tableInputs[0].value) {
             if (confirm('現在の内容をリセットして、新しい分析を作成しますか？')) {
-                clearForm(true); // Forced clear
+                clearForm(true);
                 showToast('新しい分析を開始しました');
             }
         } else {
@@ -88,7 +176,6 @@ function restoreDraft() {
     const draft = JSON.parse(localStorage.getItem('analysis_draft'));
     if (draft && !currentEditingId) {
         applyDataToForm(draft);
-        console.log('Restored unsaved draft');
     }
 }
 
@@ -129,7 +216,6 @@ function applyDataToForm(data) {
     });
 }
 
-// Render Analysis History
 function renderHistory() {
     if (analyses.length === 0) {
         elements.historyList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>';
@@ -142,9 +228,6 @@ function renderHistory() {
                 <div style="flex: 1;">
                     <strong style="display: block; font-size: 1.1rem; color: var(--primary-color);">${data.companyName}</strong>
                     <span style="font-size: 0.8rem; color: var(--text-muted);">${data.date}</span>
-                </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">時価総額: ${data.fields.marketCap || '-'}</div>
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; font-size: 0.75rem; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 4px;">
@@ -159,7 +242,6 @@ function renderHistory() {
     `).join('');
 }
 
-// Save or Update current form data
 function saveAnalysis() {
     const data = collectFormData();
     if (!data.companyName) {
@@ -168,45 +250,43 @@ function saveAnalysis() {
     }
 
     if (currentEditingId) {
-        // Update existing
         const index = analyses.findIndex(a => a.id === currentEditingId);
         if (index !== -1) {
             analyses[index] = { ...data, id: currentEditingId };
             showToast('分析データを更新しました！');
         }
     } else {
-        // Create new
         const newAnalysis = { ...data, id: Date.now() };
         analyses.unshift(newAnalysis);
         showToast('分析データを新規保存しました！');
     }
 
     localStorage.setItem('companyAnalyses_v2', JSON.stringify(analyses));
-    localStorage.removeItem('analysis_draft'); // Clear draft after save
-
+    localStorage.removeItem('analysis_draft');
     renderHistory();
 }
 
-// Load analysis into form
 window.loadAnalysis = (index) => {
     const data = analyses[index];
     currentEditingId = data.id;
-
     applyDataToForm(data);
 
-    // Visual feedback
     elements.saveBtn.textContent = '分析結果を更新する';
     elements.saveBtn.style.background = 'var(--accent-color)';
+
+    // Switch to basic tab on mobile
+    if (window.innerWidth <= 768) {
+        elements.tabs[0].click();
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// Delete analysis
 window.deleteAnalysis = (event, index) => {
     event.stopPropagation();
     if (confirm('この分析データを削除してもよろしいですか？')) {
         if (analyses[index].id === currentEditingId) {
-            clearForm();
+            clearForm(true);
         }
         analyses.splice(index, 1);
         localStorage.setItem('companyAnalyses_v2', JSON.stringify(analyses));
@@ -215,7 +295,6 @@ window.deleteAnalysis = (event, index) => {
     }
 };
 
-// Clear form
 function clearForm(isNew = false) {
     if (!isNew && !confirm('フォームの内容をすべてクリアしますか？')) return;
 
@@ -231,12 +310,13 @@ function clearForm(isNew = false) {
     elements.tableInputs.forEach(input => input.value = '');
 
     localStorage.removeItem('analysis_draft');
+
+    if (window.innerWidth <= 768) {
+        elements.tabs[0].click();
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// Event Listeners
-elements.saveBtn.addEventListener('click', saveAnalysis);
-elements.clearBtn.addEventListener('click', clearForm);
 
 // Start app
 init();

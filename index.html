@@ -27,12 +27,21 @@
             <p style="color: var(--text-muted);">洗練されたデータ分析と意思決定のために</p>
         </header>
 
-        <main class="grid" style="grid-template-columns: 2fr 1fr;">
+        <main class="grid main-grid" style="grid-template-columns: 2fr 1fr;">
             <!-- Analysis Entry Area -->
             <div class="analysis-form card">
 
+                <!-- Mobile Tabs Navigation -->
+                <div class="mobile-tabs" id="mobile-tabs">
+                    <button class="tab-btn active" data-target="basic">基本</button>
+                    <button class="tab-btn" data-target="financial">財務</button>
+                    <button class="tab-btn" data-target="indicators">指標</button>
+                    <button class="tab-btn" data-target="qualitative">定性</button>
+                    <button class="tab-btn" data-target="rating">判定</button>
+                </div>
+
                 <!-- 0. Basic Information -->
-                <section class="analysis-section">
+                <section class="analysis-section active" id="sec-basic">
                     <h2 class="section-title">🏢 基本情報</h2>
                     <div class="sub-grid">
                         <div class="input-group">
@@ -52,7 +61,7 @@
                 </section>
 
                 <!-- 1. Financial Indicators (5 Years) -->
-                <section class="analysis-section">
+                <section class="analysis-section" id="sec-financial">
                     <h2 class="section-title">📊 財務指標 (5ヶ年推移)</h2>
                     <div class="table-container">
                         <table>
@@ -113,7 +122,7 @@
                                 <tr>
                                     <td>
                                         ROE (%)
-                                        <span class="calc-hint">当期純利益 / 自己資本</span>
+                                        <span class="calc-hint">純利益 / 自己資本</span>
                                     </td>
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y1"></td>
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y2"></td>
@@ -124,7 +133,7 @@
                                 <tr>
                                     <td>
                                         ROA (ROIC) (%)
-                                        <span class="calc-hint">純利益 / 総資産 (投下資本)</span>
+                                        <span class="calc-hint">純利益 / 総資産</span>
                                     </td>
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y1"></td>
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y2"></td>
@@ -133,10 +142,7 @@
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        売上高成長 (%)
-                                        <span class="calc-hint">(今期 - 前期) / 前期</span>
-                                    </td>
+                                    <td>売上高成長 (%)</td>
                                     <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y2">
@@ -149,10 +155,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        営業利益成長 (%)
-                                        <span class="calc-hint">(今期 - 前期) / 前期</span>
-                                    </td>
+                                    <td>営業利益成長 (%)</td>
                                     <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y2">
@@ -170,7 +173,7 @@
                 </section>
 
                 <!-- 2. Stock Indicators -->
-                <section class="analysis-section">
+                <section class="analysis-section" id="sec-indicators">
                     <h2 class="section-title">📉 株価指標</h2>
                     <div class="sub-grid">
                         <div class="input-group">
@@ -209,7 +212,7 @@
                         </div>
                         <div class="input-group">
                             <label>EV/EBITDA</label>
-                            <span class="calc-hint">(時価総額+負債) / (営利+償却)</span>
+                            <span class="calc-hint">(時価総額+負債)/(営利+償却)</span>
                             <input type="text" class="data-input" data-key="evEbitda">
                         </div>
                         <div class="input-group">
@@ -226,7 +229,7 @@
                 </section>
 
                 <!-- 3. Qualitative / Enterprise Value -->
-                <section class="analysis-section">
+                <section class="analysis-section" id="sec-qualitative">
                     <h2 class="section-title">💎 定性評価・企業価値</h2>
                     <div class="grid" style="grid-template-columns: 1fr; gap: 1rem;">
                         <div class="input-group">
@@ -237,7 +240,7 @@
                         <div class="sub-grid">
                             <div class="input-group">
                                 <label>配当性向</label>
-                                <span class="calc-hint">配当金総額 / 当期純利益</span>
+                                <span class="calc-hint">配当総額 / 純利益</span>
                                 <input type="text" class="data-input" data-key="payoutRatio">
                             </div>
                             <div class="input-group">
@@ -247,17 +250,16 @@
                         </div>
                         <div class="input-group">
                             <label>清算価値 (修正資産-総負債)</label>
-                            <span class="calc-hint">正味流動資産などから算出</span>
                             <input type="text" class="data-input" data-key="liquidationValue">
                         </div>
                         <div class="sub-grid">
                             <div class="input-group">
-                                <label>収益バリュー (弱気パターン)</label>
+                                <label>収益バリュー (弱気)</label>
                                 <span class="calc-hint">NetCash + FCF/R</span>
                                 <input type="text" class="data-input" data-key="earningsValueBear">
                             </div>
                             <div class="input-group">
-                                <label>収益バリュー (強気パターン)</label>
+                                <label>収益バリュー (強気)</label>
                                 <span class="calc-hint">NetCash + FC/R</span>
                                 <input type="text" class="data-input" data-key="earningsValueBull">
                             </div>
@@ -266,7 +268,7 @@
                 </section>
 
                 <!-- 4. Rating & Summary -->
-                <section class="analysis-section" style="border-bottom: none;">
+                <section class="analysis-section" id="sec-rating" style="border-bottom: none;">
                     <h2 class="section-title">🏆 総合評価 (A~E)</h2>
                     <div class="sub-grid">
                         <div class="input-group">
@@ -357,14 +359,38 @@
                     <h2 class="section-title" style="margin-bottom: 0;">📜 分析履歴</h2>
                     <button id="new-analysis-btn" class="btn"
                         style="padding: 0.4rem 0.8rem; font-size: 0.8rem; background: var(--primary-color); color: var(--bg-color); border: none;">
-                        + 新規作成
+                        + 新規
                     </button>
                 </div>
                 <div id="history-list">
                     <p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>
                 </div>
+
+                <!-- Sync Tools -->
+                <div class="data-actions">
+                    <button id="export-btn" class="btn btn-outline" style="flex: 1;">データをコピー</button>
+                    <button id="import-btn" class="btn btn-outline" style="flex: 1;">データを貼付</button>
+                </div>
+                <p style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">※
+                    デバイス間でデータを移動する際に使用してください</p>
             </div>
         </main>
+    </div>
+
+    <!-- Import Modal (Hidden by default) -->
+    <div id="import-modal"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px;">
+        <div class="card" style="width: 100%; max-width: 500px;">
+            <h2 class="section-title">データを読み込む</h2>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">コピーしたデータを以下に貼り付けてください。</p>
+            <textarea id="import-area" style="width: 100%; min-height: 200px; margin-bottom: 1rem;"
+                placeholder="ここにJSONデータを貼り付け..."></textarea>
+            <div style="display: flex; gap: 1rem;">
+                <button id="import-confirm-btn" class="btn btn-primary" style="flex: 1;">読み込む</button>
+                <button id="import-cancel-btn" class="btn"
+                    style="flex: 1; border: 1px solid var(--border-color);">キャンセル</button>
+            </div>
+        </div>
     </div>
 
     <script src="app.js"></script>

@@ -158,6 +158,96 @@ input:focus {
     transform: translateX(4px);
 }
 
+/* Mobile Tab Navigation */
+.mobile-tabs {
+    display: none;
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 100;
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Data Actions (Export/Import) */
+.data-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.5rem;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-tabs {
+        display: flex;
+    }
+
+    .analysis-section {
+        display: none;
+        /* Hidden by default in mobile, controlled by tab */
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .analysis-section.active {
+        display: block;
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .history-section {
+        position: static !important;
+        margin-top: 2rem;
+    }
+
+    /* Table Mobile View - Let user horizontal scroll if needed */
+    .table-container {
+        margin: 0 -1rem;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    th,
+    td {
+        padding: 0.5rem;
+    }
+}
+
 /* Financial Table */
 .table-container {
     overflow-x: auto;
