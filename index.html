@@ -9,6 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        .calc-hint {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,7 +58,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>項目</th>
+                                    <th>項目 / 計算式</th>
                                     <th>年1</th>
                                     <th>年2</th>
                                     <th>年3</th>
@@ -59,7 +68,10 @@
                             </thead>
                             <tbody id="financial-table-body">
                                 <tr>
-                                    <td>株主資本比率 (%)</td>
+                                    <td>
+                                        株主資本比率 (%)
+                                        <span class="calc-hint">自己資本 / 総資産</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="equityRatio" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="equityRatio" data-col="y2">
@@ -72,7 +84,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>流動比率 (%)</td>
+                                    <td>
+                                        流動比率 (%)
+                                        <span class="calc-hint">流動資産 / 流動負債</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="currentRatio" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="currentRatio" data-col="y2">
@@ -85,7 +100,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>営業利益率 (%)</td>
+                                    <td>
+                                        営業利益率 (%)
+                                        <span class="calc-hint">営業利益 / 売上高</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="opMargin" data-col="y1"></td>
                                     <td><input type="text" class="table-input" data-row="opMargin" data-col="y2"></td>
                                     <td><input type="text" class="table-input" data-row="opMargin" data-col="y3"></td>
@@ -93,7 +111,10 @@
                                     <td><input type="text" class="table-input" data-row="opMargin" data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>ROE (%)</td>
+                                    <td>
+                                        ROE (%)
+                                        <span class="calc-hint">当期純利益 / 自己資本</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y1"></td>
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y2"></td>
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y3"></td>
@@ -101,7 +122,10 @@
                                     <td><input type="text" class="table-input" data-row="roe" data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>ROA (ROIC) (%)</td>
+                                    <td>
+                                        ROA (ROIC) (%)
+                                        <span class="calc-hint">純利益 / 総資産 (投下資本)</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y1"></td>
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y2"></td>
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y3"></td>
@@ -109,7 +133,10 @@
                                     <td><input type="text" class="table-input" data-row="roa" data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>売上高成長 (%)</td>
+                                    <td>
+                                        売上高成長 (%)
+                                        <span class="calc-hint">(今期 - 前期) / 前期</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y2">
@@ -122,7 +149,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>営業利益成長 (%)</td>
+                                    <td>
+                                        営業利益成長 (%)
+                                        <span class="calc-hint">(今期 - 前期) / 前期</span>
+                                    </td>
                                     <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y1">
                                     </td>
                                     <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y2">
@@ -149,38 +179,47 @@
                         </div>
                         <div class="input-group">
                             <label>近似PER</label>
+                            <span class="calc-hint">時価総額 / 純利益</span>
                             <input type="text" class="data-input" data-key="adjPer">
                         </div>
                         <div class="input-group">
                             <label>PCFR</label>
+                            <span class="calc-hint">時価総額 / 営業CF</span>
                             <input type="text" class="data-input" data-key="pcfr">
                         </div>
                         <div class="input-group">
                             <label>PSR</label>
+                            <span class="calc-hint">時価総額 / 売上高</span>
                             <input type="text" class="data-input" data-key="psr">
                         </div>
                         <div class="input-group">
                             <label>PBR</label>
+                            <span class="calc-hint">時価総額 / 自己資本</span>
                             <input type="text" class="data-input" data-key="pbr">
                         </div>
                         <div class="input-group">
                             <label>予想収益率 (%)</label>
+                            <span class="calc-hint">1 / PER</span>
                             <input type="text" class="data-input" data-key="expectedReturn">
                         </div>
                         <div class="input-group">
                             <label>PER × PBR</label>
+                            <span class="calc-hint">グレアム指数 (22.5以下割安)</span>
                             <input type="text" class="data-input" data-key="perPbr">
                         </div>
                         <div class="input-group">
                             <label>EV/EBITDA</label>
+                            <span class="calc-hint">(時価総額+負債) / (営利+償却)</span>
                             <input type="text" class="data-input" data-key="evEbitda">
                         </div>
                         <div class="input-group">
                             <label>ROIC</label>
+                            <span class="calc-hint">税引後営業利益 / 投下資本</span>
                             <input type="text" class="data-input" data-key="roic">
                         </div>
                         <div class="input-group">
                             <label>アクルーアル/総資産</label>
+                            <span class="calc-hint">(純利益 - 営業CF) / 総資産</span>
                             <input type="text" class="data-input" data-key="accrual">
                         </div>
                     </div>
@@ -198,6 +237,7 @@
                         <div class="sub-grid">
                             <div class="input-group">
                                 <label>配当性向</label>
+                                <span class="calc-hint">配当金総額 / 当期純利益</span>
                                 <input type="text" class="data-input" data-key="payoutRatio">
                             </div>
                             <div class="input-group">
@@ -207,15 +247,18 @@
                         </div>
                         <div class="input-group">
                             <label>清算価値 (修正資産-総負債)</label>
+                            <span class="calc-hint">正味流動資産などから算出</span>
                             <input type="text" class="data-input" data-key="liquidationValue">
                         </div>
                         <div class="sub-grid">
                             <div class="input-group">
                                 <label>収益バリュー (弱気パターン)</label>
+                                <span class="calc-hint">NetCash + FCF/R</span>
                                 <input type="text" class="data-input" data-key="earningsValueBear">
                             </div>
                             <div class="input-group">
                                 <label>収益バリュー (強気パターン)</label>
+                                <span class="calc-hint">NetCash + FC/R</span>
                                 <input type="text" class="data-input" data-key="earningsValueBull">
                             </div>
                         </div>
@@ -227,7 +270,7 @@
                     <h2 class="section-title">🏆 総合評価 (A~E)</h2>
                     <div class="sub-grid">
                         <div class="input-group">
-                            <label>内容: 資産から見た割安性</label>
+                            <label>資産から見た割安性</label>
                             <select class="data-input rating-select" data-key="rateAsset">
                                 <option value="-">-</option>
                                 <option value="A">A</option>
