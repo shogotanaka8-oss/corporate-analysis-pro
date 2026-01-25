@@ -5,6 +5,7 @@ const elements = {
     tableInputs: document.querySelectorAll('.table-input'),
     saveBtn: document.getElementById('save-btn'),
     clearBtn: document.getElementById('clear-btn'),
+    newBtn: document.getElementById('new-analysis-btn'),
     historyList: document.getElementById('history-list'),
     toast: null // Dynamically created
 };
@@ -64,6 +65,16 @@ function setupEventListeners() {
 
     elements.saveBtn.addEventListener('click', saveAnalysis);
     elements.clearBtn.addEventListener('click', clearForm);
+    elements.newBtn.addEventListener('click', () => {
+        if (elements.companyName.value.trim() || elements.tableInputs[0].value) {
+            if (confirm('現在の内容をリセットして、新しい分析を作成しますか？')) {
+                clearForm(true); // Forced clear
+                showToast('新しい分析を開始しました');
+            }
+        } else {
+            clearForm(true);
+        }
+    });
 }
 
 // Draft Management (Auto-save)
@@ -205,8 +216,8 @@ window.deleteAnalysis = (event, index) => {
 };
 
 // Clear form
-function clearForm() {
-    if (!confirm('フォームの内容をすべてクリアしますか？')) return;
+function clearForm(isNew = false) {
+    if (!isNew && !confirm('フォームの内容をすべてクリアしますか？')) return;
 
     currentEditingId = null;
     elements.saveBtn.textContent = '分析結果を保存する';
@@ -220,6 +231,7 @@ function clearForm() {
     elements.tableInputs.forEach(input => input.value = '');
 
     localStorage.removeItem('analysis_draft');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Event Listeners
