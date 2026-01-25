@@ -1,0 +1,4 @@
+*.metadata.json
+*.resolved
+*.resolved.*
+workspace.code-workspace

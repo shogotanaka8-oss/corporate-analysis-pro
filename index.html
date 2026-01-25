@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企業分析レポート Pro</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>企業分析レポート Pro</h1>
+            <p style="color: var(--text-muted);">洗練されたデータ分析と意思決定のために</p>
+        </header>
+
+        <main class="grid">
+            <div class="analysis-form card">
+                <section>
+                    <h2 class="section-title">基本情報</h2>
+                    <div class="input-group">
+                        <label for="company-name">企業名</label>
+                        <input type="text" id="company-name" placeholder="例: トヨタ自動車">
+                    </div>
+                    <div class="input-group">
+                        <label for="analysis-date">分析日</label>
+                        <input type="date" id="analysis-date">
+                    </div>
+                </section>
+
+                <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                    <section>
+                        <h2 class="section-title">📈 健全性・収益性</h2>
+                        <div class="input-group">
+                            <label>自己資本比率 (%)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="equityRatio">
+                        </div>
+                        <div class="input-group">
+                            <label>ROE (%)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="roe">
+                        </div>
+                        <div class="input-group">
+                            <label>ROA (%)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="roa">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="section-title">🚀 成長性</h2>
+                        <div class="input-group">
+                            <label>売上高成長率 (%)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="salesGrowth">
+                        </div>
+                        <div class="input-group">
+                            <label>営業利益成長率 (%)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="profitGrowth">
+                        </div>
+                    </section>
+                </div>
+
+                <section style="margin-top: 1.5rem;">
+                    <h2 class="section-title">💎 バリュー・投資判定</h2>
+                    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="input-group">
+                            <label>PER (倍)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="per">
+                        </div>
+                        <div class="input-group">
+                            <label>PBR (倍)</label>
+                            <input type="number" step="0.1" class="score-input" data-key="pbr">
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top: 1rem;">
+                        <label for="investment-judgment">投資判定</label>
+                        <select id="investment-judgment">
+                            <option value="S">S (最優先投資)</option>
+                            <option value="A">A (積極的に検討)</option>
+                            <option value="B">B (慎重に検討後、投資)</option>
+                            <option value="C">C (様子見・保留)</option>
+                            <option value="D">D (投資対象外)</option>
+                        </select>
+                    </div>
+                </section>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button id="save-btn" class="btn btn-primary" style="flex: 2;">分析結果を保存する</button>
+                    <button id="clear-btn" class="btn" style="flex: 1; border: 1px solid var(--border-color);">クリア</button>
+                </div>
+            </div>
+
+            <div class="history-section card">
+                <h2 class="section-title">📜 分析履歴</h2>
+                <div id="history-list">
+                    <p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
