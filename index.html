@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -16,83 +18,298 @@
             <p style="color: var(--text-muted);">洗練されたデータ分析と意思決定のために</p>
         </header>
 
-        <main class="grid">
+        <main class="grid" style="grid-template-columns: 2fr 1fr;">
+            <!-- Analysis Entry Area -->
             <div class="analysis-form card">
-                <section>
-                    <h2 class="section-title">基本情報</h2>
-                    <div class="input-group">
-                        <label for="company-name">企業名</label>
-                        <input type="text" id="company-name" placeholder="例: トヨタ自動車">
-                    </div>
-                    <div class="input-group">
-                        <label for="analysis-date">分析日</label>
-                        <input type="date" id="analysis-date">
+
+                <!-- 0. Basic Information -->
+                <section class="analysis-section">
+                    <h2 class="section-title">🏢 基本情報</h2>
+                    <div class="sub-grid">
+                        <div class="input-group">
+                            <label for="company-name">企業名</label>
+                            <input type="text" id="company-name" placeholder="例: トヨタ自動車">
+                        </div>
+                        <div class="input-group">
+                            <label for="analysis-date">分析日</label>
+                            <input type="date" id="analysis-date">
+                        </div>
+                        <div class="input-group">
+                            <label for="market-cap">時価総額</label>
+                            <input type="text" id="market-cap" class="data-input" data-key="marketCap"
+                                placeholder="例: 30兆円">
+                        </div>
                     </div>
                 </section>
 
-                <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+                <!-- 1. Financial Indicators (5 Years) -->
+                <section class="analysis-section">
+                    <h2 class="section-title">📊 財務指標 (5ヶ年推移)</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>項目</th>
+                                    <th>年1</th>
+                                    <th>年2</th>
+                                    <th>年3</th>
+                                    <th>年4</th>
+                                    <th>最新</th>
+                                </tr>
+                            </thead>
+                            <tbody id="financial-table-body">
+                                <tr>
+                                    <td>株主資本比率 (%)</td>
+                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y5">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>流動比率 (%)</td>
+                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y5">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>営業利益率 (%)</td>
+                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y1"></td>
+                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y2"></td>
+                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y3"></td>
+                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y4"></td>
+                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>ROE (%)</td>
+                                    <td><input type="text" class="table-input" data-row="roe" data-col="y1"></td>
+                                    <td><input type="text" class="table-input" data-row="roe" data-col="y2"></td>
+                                    <td><input type="text" class="table-input" data-row="roe" data-col="y3"></td>
+                                    <td><input type="text" class="table-input" data-row="roe" data-col="y4"></td>
+                                    <td><input type="text" class="table-input" data-row="roe" data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>ROA (ROIC) (%)</td>
+                                    <td><input type="text" class="table-input" data-row="roa" data-col="y1"></td>
+                                    <td><input type="text" class="table-input" data-row="roa" data-col="y2"></td>
+                                    <td><input type="text" class="table-input" data-row="roa" data-col="y3"></td>
+                                    <td><input type="text" class="table-input" data-row="roa" data-col="y4"></td>
+                                    <td><input type="text" class="table-input" data-row="roa" data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>売上高成長 (%)</td>
+                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y5">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>営業利益成長 (%)</td>
+                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y5">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
 
-                <div class="grid" style="grid-template-columns: 1fr 1fr;">
-                    <section>
-                        <h2 class="section-title">📈 健全性・収益性</h2>
+                <!-- 2. Stock Indicators -->
+                <section class="analysis-section">
+                    <h2 class="section-title">📉 株価指標</h2>
+                    <div class="sub-grid">
                         <div class="input-group">
-                            <label>自己資本比率 (%)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="equityRatio">
+                            <label>株価</label>
+                            <input type="text" class="data-input" data-key="stockPrice" placeholder="例: 3,000円">
                         </div>
                         <div class="input-group">
-                            <label>ROE (%)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="roe">
+                            <label>近似PER</label>
+                            <input type="text" class="data-input" data-key="adjPer">
                         </div>
                         <div class="input-group">
-                            <label>ROA (%)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="roa">
+                            <label>PCFR</label>
+                            <input type="text" class="data-input" data-key="pcfr">
                         </div>
-                    </section>
+                        <div class="input-group">
+                            <label>PSR</label>
+                            <input type="text" class="data-input" data-key="psr">
+                        </div>
+                        <div class="input-group">
+                            <label>PBR</label>
+                            <input type="text" class="data-input" data-key="pbr">
+                        </div>
+                        <div class="input-group">
+                            <label>予想収益率 (%)</label>
+                            <input type="text" class="data-input" data-key="expectedReturn">
+                        </div>
+                        <div class="input-group">
+                            <label>PER × PBR</label>
+                            <input type="text" class="data-input" data-key="perPbr">
+                        </div>
+                        <div class="input-group">
+                            <label>EV/EBITDA</label>
+                            <input type="text" class="data-input" data-key="evEbitda">
+                        </div>
+                        <div class="input-group">
+                            <label>ROIC</label>
+                            <input type="text" class="data-input" data-key="roic">
+                        </div>
+                        <div class="input-group">
+                            <label>アクルーアル/総資産</label>
+                            <input type="text" class="data-input" data-key="accrual">
+                        </div>
+                    </div>
+                </section>
 
-                    <section>
-                        <h2 class="section-title">🚀 成長性</h2>
+                <!-- 3. Qualitative / Enterprise Value -->
+                <section class="analysis-section">
+                    <h2 class="section-title">💎 定性評価・企業価値</h2>
+                    <div class="grid" style="grid-template-columns: 1fr; gap: 1rem;">
                         <div class="input-group">
-                            <label>売上高成長率 (%)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="salesGrowth">
+                            <label>大株主リスト・株主動向</label>
+                            <textarea class="data-input" data-key="majorShareholders"
+                                placeholder="主要株主や最近の動き..."></textarea>
+                        </div>
+                        <div class="sub-grid">
+                            <div class="input-group">
+                                <label>配当性向</label>
+                                <input type="text" class="data-input" data-key="payoutRatio">
+                            </div>
+                            <div class="input-group">
+                                <label>自社株買い等履歴</label>
+                                <input type="text" class="data-input" data-key="buybackHistory">
+                            </div>
                         </div>
                         <div class="input-group">
-                            <label>営業利益成長率 (%)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="profitGrowth">
+                            <label>清算価値 (修正資産-総負債)</label>
+                            <input type="text" class="data-input" data-key="liquidationValue">
                         </div>
-                    </section>
-                </div>
+                        <div class="sub-grid">
+                            <div class="input-group">
+                                <label>収益バリュー (弱気パターン)</label>
+                                <input type="text" class="data-input" data-key="earningsValueBear">
+                            </div>
+                            <div class="input-group">
+                                <label>収益バリュー (強気パターン)</label>
+                                <input type="text" class="data-input" data-key="earningsValueBull">
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                <section style="margin-top: 1.5rem;">
-                    <h2 class="section-title">💎 バリュー・投資判定</h2>
-                    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <!-- 4. Rating & Summary -->
+                <section class="analysis-section" style="border-bottom: none;">
+                    <h2 class="section-title">🏆 総合評価 (A~E)</h2>
+                    <div class="sub-grid">
                         <div class="input-group">
-                            <label>PER (倍)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="per">
+                            <label>内容: 資産から見た割安性</label>
+                            <select class="data-input rating-select" data-key="rateAsset">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
                         </div>
                         <div class="input-group">
-                            <label>PBR (倍)</label>
-                            <input type="number" step="0.1" class="score-input" data-key="pbr">
+                            <label>財務健全性</label>
+                            <select class="data-input rating-select" data-key="rateHealth">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>収益性</label>
+                            <select class="data-input rating-select" data-key="rateProfits">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>成長性</label>
+                            <select class="data-input rating-select" data-key="rateGrowth">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>事業素質</label>
+                            <select class="data-input rating-select" data-key="rateBusiness">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>株主重視姿勢</label>
+                            <select class="data-input rating-select" data-key="rateShareholder">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
                         </div>
                     </div>
                     <div class="input-group" style="margin-top: 1rem;">
-                        <label for="investment-judgment">投資判定</label>
-                        <select id="investment-judgment">
-                            <option value="S">S (最優先投資)</option>
-                            <option value="A">A (積極的に検討)</option>
-                            <option value="B">B (慎重に検討後、投資)</option>
-                            <option value="C">C (様子見・保留)</option>
-                            <option value="D">D (投資対象外)</option>
-                        </select>
+                        <label>総括・投資判定</label>
+                        <textarea class="data-input" data-key="summary"
+                            style="min-height: 120px; border-color: var(--primary-color);"
+                            placeholder="分析のまとめと最終的な判断..."></textarea>
                     </div>
                 </section>
 
                 <div style="margin-top: 2rem; display: flex; gap: 1rem;">
                     <button id="save-btn" class="btn btn-primary" style="flex: 2;">分析結果を保存する</button>
-                    <button id="clear-btn" class="btn" style="flex: 1; border: 1px solid var(--border-color);">クリア</button>
+                    <button id="clear-btn" class="btn"
+                        style="flex: 1; border: 1px solid var(--border-color);">クリア</button>
                 </div>
             </div>
 
-            <div class="history-section card">
+            <!-- History Sidebar -->
+            <div class="history-section card" style="height: fit-content; position: sticky; top: var(--spacing);">
                 <h2 class="section-title">📜 分析履歴</h2>
                 <div id="history-list">
                     <p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>
@@ -103,4 +320,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

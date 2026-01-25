@@ -1,23 +1,22 @@
 // DOM Elements
-const form = {
+const elements = {
     companyName: document.getElementById('company-name'),
     analysisDate: document.getElementById('analysis-date'),
-    judgment: document.getElementById('investment-judgment'),
-    scores: document.querySelectorAll('.score-input')
+    dataInputs: document.querySelectorAll('.data-input'),
+    tableInputs: document.querySelectorAll('.table-input'),
+    saveBtn: document.getElementById('save-btn'),
+    clearBtn: document.getElementById('clear-btn'),
+    historyList: document.getElementById('history-list')
 };
 
-const saveBtn = document.getElementById('save-btn');
-const clearBtn = document.getElementById('clear-btn');
-const historyList = document.getElementById('history-list');
-
 // App State
-let analyses = JSON.parse(localStorage.getItem('companyAnalyses') || '[]');
+let analyses = JSON.parse(localStorage.getItem('companyAnalyses_v2') || '[]');
 
 // Initialize
 function init() {
     // Set default date to today
     const today = new Date().toISOString().split('T')[0];
-    form.analysisDate.value = today;
+    elements.analysisDate.value = today;
 
     renderHistory();
 }
@@ -25,23 +24,26 @@ function init() {
 // Render Analysis History
 function renderHistory() {
     if (analyses.length === 0) {
-        historyList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>';
+        elements.historyList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">履歴がありません</p>';
         return;
     }
 
-    historyList.innerHTML = analyses.map((data, index) => `
+    elements.historyList.innerHTML = analyses.map((data, index) => `
         <div class="history-item" onclick="loadAnalysis(${index})">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
-                <div>
-                    <strong style="display: block; font-size: 1.1rem;">${data.companyName}</strong>
+                <div style="flex: 1;">
+                    <strong style="display: block; font-size: 1.1rem; color: var(--primary-color);">${data.companyName}</strong>
                     <span style="font-size: 0.8rem; color: var(--text-muted);">${data.date}</span>
                 </div>
-                <span class="judgment-badge judgment-${data.judgment}">${data.judgment}判定</span>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">時価総額: ${data.fields.marketCap || '-'}</div>
+                </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; font-size: 0.75rem;">
-                <span>自己資本: ${data.scores.equityRatio || '-'}%</span>
-                <span>ROE: ${data.scores.roe || '-'}%</span>
-                <span>PER: ${data.scores.per || '-'}倍</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; font-size: 0.75rem; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 4px;">
+                <span>PER: ${data.fields.adjPer || '-'}</span>
+                <span>PBR: ${data.fields.pbr || '-'}</span>
+                <span>ROE: ${data.tableData.roe?.y5 || '-'}%</span>
+                <span>健全性: ${data.fields.rateHealth || '-'}</span>
             </div>
             <button onclick="deleteAnalysis(event, ${index})" style="background: none; border: none; color: var(--danger); font-size: 0.75rem; margin-top: 0.5rem; cursor: pointer; float: right;">削除</button>
             <div style="clear: both;"></div>
@@ -49,84 +51,90 @@ function renderHistory() {
     `).join('');
 }
 
-// Add CSS for badges dynamically
-const style = document.createElement('style');
-style.textContent = `
-    .judgment-badge {
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 0.8rem;
-    }
-    .judgment-S { background: #eab308; color: #000; }
-    .judgment-A { background: #22c55e; color: #fff; }
-    .judgment-B { background: #3b82f6; color: #fff; }
-    .judgment-C { background: #94a3b8; color: #fff; }
-    .judgment-D { background: #ef4444; color: #fff; }
-`;
-document.head.appendChild(style);
-
 // Save current form data
 function saveAnalysis() {
-    const companyName = form.companyName.value.trim();
+    const companyName = elements.companyName.value.trim();
     if (!companyName) {
         alert('企業名を入力してください！');
         return;
     }
 
-    const scores = {};
-    form.scores.forEach(input => {
-        scores[input.dataset.key] = input.value;
+    // Collect standard field data
+    const fields = {};
+    elements.dataInputs.forEach(input => {
+        fields[input.dataset.key] = input.value;
+    });
+
+    // Collect table data
+    const tableData = {};
+    elements.tableInputs.forEach(input => {
+        const row = input.dataset.row;
+        const col = input.dataset.col;
+        if (!tableData[row]) tableData[row] = {};
+        tableData[row][col] = input.value;
     });
 
     const newAnalysis = {
         id: Date.now(),
         companyName,
-        date: form.analysisDate.value,
-        judgment: form.judgment.value,
-        scores
+        date: elements.analysisDate.value,
+        fields,
+        tableData
     };
 
     analyses.unshift(newAnalysis); // Add to beginning
-    localStorage.setItem('companyAnalyses', JSON.stringify(analyses));
-    
+    localStorage.setItem('companyAnalyses_v2', JSON.stringify(analyses));
+
     renderHistory();
-    alert('保存しました！');
+    alert('詳細な分析結果を保存しました！');
 }
 
 // Load analysis into form
 window.loadAnalysis = (index) => {
     const data = analyses[index];
-    form.companyName.value = data.companyName;
-    form.analysisDate.value = data.date;
-    form.judgment.value = data.judgment;
-    
-    form.scores.forEach(input => {
-        input.value = data.scores[input.dataset.key] || '';
+    elements.companyName.value = data.companyName;
+    elements.analysisDate.value = data.date;
+
+    // Restore standard field data
+    elements.dataInputs.forEach(input => {
+        input.value = data.fields[input.dataset.key] || (input.tagName === 'SELECT' ? '-' : '');
     });
+
+    // Restore table data
+    elements.tableInputs.forEach(input => {
+        const row = input.dataset.row;
+        const col = input.dataset.col;
+        input.value = (data.tableData[row] && data.tableData[row][col]) || '';
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 // Delete analysis
 window.deleteAnalysis = (event, index) => {
-    event.stopPropagation(); // Prevent loading the analysis
+    event.stopPropagation();
     if (confirm('この分析データを削除してもよろしいですか？')) {
         analyses.splice(index, 1);
-        localStorage.setItem('companyAnalyses', JSON.stringify(analyses));
+        localStorage.setItem('companyAnalyses_v2', JSON.stringify(analyses));
         renderHistory();
     }
 };
 
 // Clear form
 function clearForm() {
-    form.companyName.value = '';
-    form.analysisDate.value = new Date().toISOString().split('T')[0];
-    form.judgment.value = 'S';
-    form.scores.forEach(input => input.value = '');
+    if (!confirm('フォームの内容をすべてクリアしますか？')) return;
+
+    elements.companyName.value = '';
+    elements.analysisDate.value = new Date().toISOString().split('T')[0];
+    elements.dataInputs.forEach(input => {
+        input.value = (input.tagName === 'SELECT' ? '-' : '');
+    });
+    elements.tableInputs.forEach(input => input.value = '');
 }
 
 // Event Listeners
-saveBtn.addEventListener('click', saveAnalysis);
-clearBtn.addEventListener('click', clearForm);
+elements.saveBtn.addEventListener('click', saveAnalysis);
+elements.clearBtn.addEventListener('click', clearForm);
 
 // Start app
 init();

@@ -99,10 +99,10 @@ header h1 {
     align-items: center;
 }
 
-input[type="text"], 
-input[type="number"], 
+input[type="text"],
+input[type="number"],
 input[type="date"],
-textarea, 
+textarea,
 select {
     width: 100%;
     background: var(--bg-color);
@@ -158,11 +158,103 @@ input:focus {
     transform: translateX(4px);
 }
 
+/* Financial Table */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.table-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.table-input:focus {
+    outline: none;
+    background: rgba(56, 189, 248, 0.1);
+}
+
+/* Specific Section Styles */
+.analysis-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.rating-select {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.judgment-D {
+    background: #ef4444;
+    color: #fff;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
 @media (max-width: 640px) {
     .container {
         padding: 1rem;
     }
+
     header h1 {
         font-size: 1.75rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
     }
 }
