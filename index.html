@@ -62,7 +62,122 @@
 
                 <!-- 1. Financial Indicators (5 Years) -->
                 <section class="analysis-section" id="sec-financial">
-                    <h2 class="section-title">📊 財務指標 (5ヶ年推移)</h2>
+                    <h2 class="section-title">📊 財務データ & 指標 (5ヶ年)</h2>
+
+                    <!-- Raw Data Entry -->
+                    <h3 style="font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.5rem;">[1] 生データ入力 (BS /
+                        PL)</h3>
+                    <div class="table-container" style="margin-bottom: 1.5rem;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>項目 (単位: 百万円等)</th>
+                                    <th>年1</th>
+                                    <th>年2</th>
+                                    <th>年3</th>
+                                    <th>年4</th>
+                                    <th>最新</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>売上高</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="sales" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="sales" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="sales" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="sales" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="sales" data-col="y5">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>営業利益</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="opProfit"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="opProfit"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="opProfit"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="opProfit"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="opProfit"
+                                            data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>当期純利益</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="netProfit"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="netProfit"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="netProfit"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="netProfit"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="netProfit"
+                                            data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>総資産</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="totalAssets"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="totalAssets"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="totalAssets"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="totalAssets"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="totalAssets"
+                                            data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>自己資本</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="equity" data-col="y1">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="equity" data-col="y2">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="equity" data-col="y3">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="equity" data-col="y4">
+                                    </td>
+                                    <td><input type="text" class="table-input raw-data" data-row="equity" data-col="y5">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>流動資産</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentAssets"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentAssets"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentAssets"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentAssets"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentAssets"
+                                            data-col="y5"></td>
+                                </tr>
+                                <tr>
+                                    <td>流動負債</td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentLiabilities"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentLiabilities"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentLiabilities"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentLiabilities"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input raw-data" data-row="currentLiabilities"
+                                            data-col="y5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Computed Indicators -->
+                    <h3 style="font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.5rem;">[2] 算出指標 (自動計算)
+                    </h3>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -81,91 +196,112 @@
                                         株主資本比率 (%)
                                         <span class="calc-hint">自己資本 / 総資産</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y1">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y2">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y3">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y4">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="equityRatio" data-col="y5">
-                                    </td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="equityRatio"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="equityRatio"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="equityRatio"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="equityRatio"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="equityRatio"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         流動比率 (%)
                                         <span class="calc-hint">流動資産 / 流動負債</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y1">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y2">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y3">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y4">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="currentRatio" data-col="y5">
-                                    </td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="currentRatio"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="currentRatio"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="currentRatio"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="currentRatio"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="currentRatio"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         営業利益率 (%)
                                         <span class="calc-hint">営業利益 / 売上高</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y1"></td>
-                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y2"></td>
-                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y3"></td>
-                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y4"></td>
-                                    <td><input type="text" class="table-input" data-row="opMargin" data-col="y5"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="opMargin"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="opMargin"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="opMargin"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="opMargin"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="opMargin"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         ROE (%)
                                         <span class="calc-hint">純利益 / 自己資本</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="roe" data-col="y1"></td>
-                                    <td><input type="text" class="table-input" data-row="roe" data-col="y2"></td>
-                                    <td><input type="text" class="table-input" data-row="roe" data-col="y3"></td>
-                                    <td><input type="text" class="table-input" data-row="roe" data-col="y4"></td>
-                                    <td><input type="text" class="table-input" data-row="roe" data-col="y5"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roe"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roe"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roe"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roe"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roe"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         ROA (ROIC) (%)
                                         <span class="calc-hint">純利益 / 総資産</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="roa" data-col="y1"></td>
-                                    <td><input type="text" class="table-input" data-row="roa" data-col="y2"></td>
-                                    <td><input type="text" class="table-input" data-row="roa" data-col="y3"></td>
-                                    <td><input type="text" class="table-input" data-row="roa" data-col="y4"></td>
-                                    <td><input type="text" class="table-input" data-row="roa" data-col="y5"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roa"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roa"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roa"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roa"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="roa"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>売上高成長 (%)</td>
-                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y1">
+                                    <td>
+                                        売上高成長 (%)
+                                        <span class="calc-hint">(今期-前期)/前期</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y2">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y3">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y4">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="salesGrowth" data-col="y5">
-                                    </td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="salesGrowth"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="salesGrowth"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="salesGrowth"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="salesGrowth"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="salesGrowth"
+                                            data-col="y5"></td>
                                 </tr>
                                 <tr>
-                                    <td>営業利益成長 (%)</td>
-                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y1">
+                                    <td>
+                                        営業利益成長 (%)
+                                        <span class="calc-hint">(今期-前期)/前期</span>
                                     </td>
-                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y2">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y3">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y4">
-                                    </td>
-                                    <td><input type="text" class="table-input" data-row="profitGrowth" data-col="y5">
-                                    </td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="profitGrowth"
+                                            data-col="y1"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="profitGrowth"
+                                            data-col="y2"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="profitGrowth"
+                                            data-col="y3"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="profitGrowth"
+                                            data-col="y4"></td>
+                                    <td><input type="text" class="table-input indicator-data" data-row="profitGrowth"
+                                            data-col="y5"></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -43,6 +43,8 @@ function init() {
 
         elements.dataInputs = document.querySelectorAll('.data-input');
         elements.tableInputs = document.querySelectorAll('.table-input');
+        elements.rawDataInputs = document.querySelectorAll('.raw-data');
+        elements.indicatorInputs = document.querySelectorAll('.indicator-data');
         elements.tabs = document.querySelectorAll('.tab-btn');
         elements.sections = document.querySelectorAll('.analysis-section');
 
@@ -179,6 +181,17 @@ function setupEventListeners() {
         input.addEventListener('input', saveDraft);
     });
 
+    // Auto-calculation listener
+    if (elements.rawDataInputs) {
+        elements.rawDataInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const col = input.dataset.col;
+                calculateIndicatorsForColumn(col);
+                saveDraft();
+            });
+        });
+    }
+
     if (elements.saveBtn) elements.saveBtn.addEventListener('click', saveAnalysis);
     if (elements.clearBtn) elements.clearBtn.addEventListener('click', () => clearForm());
     if (elements.newBtn) {
@@ -191,6 +204,53 @@ function setupEventListeners() {
                 clearForm(true);
             }
         });
+    }
+}
+
+// Financial Auto-calculation Logic
+function calculateIndicatorsForColumn(col) {
+    const getVal = (row) => {
+        const input = Array.from(elements.rawDataInputs).find(i => i.dataset.row === row && i.dataset.col === col);
+        return input ? parseFloat(input.value.replace(/,/g, '')) : NaN;
+    };
+
+    const setIndicator = (row, val) => {
+        const input = Array.from(elements.indicatorInputs).find(i => i.dataset.row === row && i.dataset.col === col);
+        if (input && !isNaN(val)) {
+            input.value = Number.isFinite(val) ? val.toFixed(2) : '-';
+        }
+    };
+
+    const sales = getVal('sales');
+    const opProfit = getVal('opProfit');
+    const netProfit = getVal('netProfit');
+    const totalAssets = getVal('totalAssets');
+    const equity = getVal('equity');
+    const curAssets = getVal('currentAssets');
+    const curLiab = document.querySelector(`.raw-data[data-row="currentLiabilities"][data-col="${col}"]`);
+    const currentLiabilities = curLiab ? parseFloat(curLiab.value.replace(/,/g, '')) : NaN;
+
+    // Calculations
+    if (equity && totalAssets) setIndicator('equityRatio', (equity / totalAssets) * 100);
+    if (curAssets && currentLiabilities) setIndicator('currentRatio', (curAssets / currentLiabilities) * 100);
+    if (opProfit && sales) setIndicator('opMargin', (opProfit / sales) * 100);
+    if (netProfit && equity) setIndicator('roe', (netProfit / equity) * 100);
+    if (netProfit && totalAssets) setIndicator('roa', (netProfit / totalAssets) * 100);
+
+    // Growth rates (compared to previous column)
+    const prevColMap = { 'y2': 'y1', 'y3': 'y2', 'y4': 'y3', 'y5': 'y4' };
+    const prevCol = prevColMap[col];
+    if (prevCol) {
+        const getPrevVal = (row) => {
+            const input = Array.from(elements.rawDataInputs).find(i => i.dataset.row === row && i.dataset.col === prevCol);
+            return input ? parseFloat(input.value.replace(/,/g, '')) : NaN;
+        };
+
+        const prevSales = getPrevVal('sales');
+        if (sales && prevSales) setIndicator('salesGrowth', ((sales - prevSales) / prevSales) * 100);
+
+        const prevOpProfit = getPrevVal('opProfit');
+        if (opProfit && prevOpProfit) setIndicator('profitGrowth', ((opProfit - prevOpProfit) / prevOpProfit) * 100);
     }
 }
 
@@ -212,6 +272,7 @@ function restoreDraft() {
 function collectFormData() {
     const fields = {};
     elements.dataInputs.forEach(input => fields[input.dataset.key] = input.value);
+
     const tableData = {};
     elements.tableInputs.forEach(input => {
         const row = input.dataset.row;
@@ -219,25 +280,49 @@ function collectFormData() {
         if (!tableData[row]) tableData[row] = {};
         tableData[row][col] = input.value;
     });
+
+    const rawData = {};
+    elements.rawDataInputs.forEach(input => {
+        const row = input.dataset.row;
+        const col = input.dataset.col;
+        if (!rawData[row]) rawData[row] = {};
+        rawData[row][col] = input.value;
+    });
+
     return {
         companyName: elements.companyName ? elements.companyName.value.trim() : '',
         date: elements.analysisDate ? elements.analysisDate.value : '',
         fields,
-        tableData
+        tableData,
+        rawData
     };
 }
 
 function applyDataToForm(data) {
     if (elements.companyName) elements.companyName.value = data.companyName || '';
     if (elements.analysisDate) elements.analysisDate.value = data.date || '';
-    elements.dataInputs.forEach(input => {
-        input.value = data.fields[input.dataset.key] || (input.tagName === 'SELECT' ? '-' : '');
-    });
-    elements.tableInputs.forEach(input => {
-        const row = input.dataset.row;
-        const col = input.dataset.col;
-        input.value = (data.tableData[row] && data.tableData[row][col]) || '';
-    });
+
+    if (elements.dataInputs) {
+        elements.dataInputs.forEach(input => {
+            input.value = data.fields[input.dataset.key] || (input.tagName === 'SELECT' ? '-' : '');
+        });
+    }
+
+    if (elements.tableInputs) {
+        elements.tableInputs.forEach(input => {
+            const row = input.dataset.row;
+            const col = input.dataset.col;
+            input.value = (data.tableData && data.tableData[row] && data.tableData[row][col]) || '';
+        });
+    }
+
+    if (elements.rawDataInputs && data.rawData) {
+        elements.rawDataInputs.forEach(input => {
+            const row = input.dataset.row;
+            const col = input.dataset.col;
+            input.value = (data.rawData[row] && data.rawData[row][col]) || '';
+        });
+    }
 }
 
 function renderHistory() {
