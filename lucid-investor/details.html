@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dbe9ff",
+                    "outline": "#6e7980",
+                    "on-surface": "#0d1c2d",
+                    "tertiary-fixed-dim": "#ffafd3",
+                    "on-tertiary-fixed": "#3d0026",
+                    "inverse-on-surface": "#e9f1ff",
+                    "tertiary-fixed": "#ffd8e7",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#233143",
+                    "on-primary-fixed": "#001e2c",
+                    "on-tertiary-container": "#811057",
+                    "tertiary": "#a43073",
+                    "surface-container-highest": "#d4e4fa",
+                    "outline-variant": "#bdc8d1",
+                    "tertiary-container": "#ff8cc5",
+                    "secondary": "#006c4b",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d4e4fa",
+                    "surface-dim": "#ccdbf2",
+                    "surface-tint": "#00668a",
+                    "inverse-primary": "#7bd0ff",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#3e484f",
+                    "primary-container": "#38bdf8",
+                    "on-primary-container": "#004965",
+                    "secondary-fixed": "#68fcbf",
+                    "secondary-container": "#64f9bc",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#00714e",
+                    "on-primary-fixed-variant": "#004c69",
+                    "on-secondary-fixed": "#002114",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-tertiary-fixed-variant": "#85145a",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "surface-container": "#e5efff",
+                    "surface-container-low": "#eef4ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#45dfa4",
+                    "background": "#f8f9ff",
+                    "primary": "#00668a",
+                    "primary-fixed": "#c4e7ff",
+                    "on-background": "#0d1c2d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(248, 249, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="text-xl font-bold text-primary font-headline tracking-[-0.02em]">The Lucid Investor</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8 font-label text-sm">
+<a class="text-primary font-bold border-b-2 border-primary-container" href="index.html">ホーム</a>
+<a class="text-slate-500 hover:bg-sky-50 transition-colors px-2 py-1 rounded-md" href="search.html">探索</a>
+<a class="text-slate-500 hover:bg-sky-50 transition-colors px-2 py-1 rounded-md" href="watchlist.html">ウォッチリスト</a>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline cursor-pointer scale-100 active:scale-95 duration-200">notifications</span>
+<span class="material-symbols-outlined text-outline cursor-pointer scale-100 active:scale-95 duration-200">help_outline</span>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Hidden on small screens) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 z-40 hidden lg:flex bg-surface-container-low w-64 rounded-r-3xl shadow-xl">
+<div class="mt-20 flex flex-col gap-2">
+<div class="px-4 py-6">
+<p class="text-xs font-label text-outline uppercase tracking-widest mb-1">こんにちは</p>
+<h2 class="font-headline font-bold text-lg text-primary">投資の旅を続けましょう</h2>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 bg-surface-container-lowest text-primary rounded-full px-4 py-3 shadow-sm hover:translate-x-1 transition-transform duration-300" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-medium">ホーム</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="search.html">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span>探索</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="watchlist.html">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+<span>ウォッチリスト</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span>ニュース</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>プロフィール</span>
+</a>
+</nav>
+<div class="mt-10 p-4 bg-primary-container/20 rounded-lg">
+<p class="text-xs text-on-primary-container mb-3">新しい投資戦略を学びませんか？</p>
+<button class="w-full py-2 bg-primary text-white rounded-full text-sm font-bold shadow-md">投資を学ぶ</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 lg:ml-64 px-4 md:px-8 max-w-7xl">
+<!-- Hero Section: Company Header -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-lg flex items-center justify-center p-2">
+<img alt="Sony Logo" class="w-full h-auto object-contain" data-alt="Sony corporate logo on a clean white professional background, modern minimalist tech brand identity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQvYnyzM9nyBSoaFSacMCTevEmej6sDBgi1iyCi5NlPXwKZJB1Mh23DObumcIo-QzUCQBC30IatnFDC8UuLMwOq2CVyoRMHcu38ojIG2vXcdyzVhLEmPr5GyoH22f5lDam8H--wGYS_dpG6JKwaZU1XV-p3h9kvXVGfuxbgnGVFJXup_32OMQAleOMxhODmn6x0Px9LgvV7RLGPIW9dBe-Zbbvjln0whUGPkXYNq991jfk7Ez0UTzAH9BqccmhRnSBPlaiJjk83_s"/>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="px-2 py-0.5 bg-surface-container-high text-primary text-xs font-bold rounded">6758.T</span>
+<h1 class="text-3xl font-headline font-extrabold tracking-tight">ソニーグループ</h1>
+</div>
+<div class="flex items-baseline gap-4">
+<span class="text-5xl font-headline font-extrabold text-on-surface">¥12,845</span>
+<span class="flex items-center text-secondary font-bold text-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_drop_up</span>
+                            +2.45%
+                        </span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-3 bg-surface-container-high text-primary rounded-full font-bold hover:bg-surface-container-highest transition-all duration-200">
+<span class="material-symbols-outlined">add</span>
+                    ウォッチリストに追加
+                </button>
+<button class="flex items-center gap-2 px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
+                    売買注文
+                </button>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Performance Chart (Large Span) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-lg p-6 shadow-sm border border-outline-variant/15">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-lg">1年間の価格推移</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 text-xs font-medium text-outline">1D</span>
+<span class="px-3 py-1 text-xs font-medium text-outline">1W</span>
+<span class="px-3 py-1 text-xs font-medium text-outline">1M</span>
+<span class="px-3 py-1 text-xs font-bold bg-primary-container/20 text-primary rounded-full">1Y</span>
+<span class="px-3 py-1 text-xs font-medium text-outline">ALL</span>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<!-- Simplified Area Chart Placeholder -->
+<div class="absolute inset-0 flex items-end">
+<svg class="w-full h-full text-primary/20 fill-current overflow-visible" viewbox="0 0 400 100">
+<path d="M0 80 Q 50 60, 100 70 T 200 40 T 300 30 T 400 10 V 100 H 0 Z"></path>
+<path class="text-primary" d="M0 80 Q 50 60, 100 70 T 200 40 T 300 30 T 400 10" fill="none" stroke="currentColor" stroke-width="3"></path>
+</svg>
+</div>
+<div class="absolute top-0 left-0 text-xs text-outline">¥14,000</div>
+<div class="absolute bottom-10 left-0 text-xs text-outline">¥10,000</div>
+</div>
+</div>
+<!-- Simple Health Check Gauges -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col justify-between">
+<h3 class="font-headline font-bold text-lg mb-6">企業の健康状態</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div>
+<p class="text-xs text-outline">稼ぐ力</p>
+<p class="font-bold">非常に高い</p>
+</div>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="none" r="16" stroke="#e5efff" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="none" r="16" stroke="#64f9bc" stroke-dasharray="85, 100" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-xs text-outline">お財布の余裕</p>
+<p class="font-bold">余裕あり</p>
+</div>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="none" r="16" stroke="#e5efff" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="none" r="16" stroke="#38bdf8" stroke-dasharray="60, 100" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+<div>
+<p class="text-xs text-outline">割安度</p>
+<p class="font-bold">適正価格</p>
+</div>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="none" r="16" stroke="#e5efff" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="none" r="16" stroke="#ff8cc5" stroke-dasharray="45, 100" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Why this company Section -->
+<div class="bg-surface-container-highest rounded-lg p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline font-bold text-xl mb-6">なぜこの企業に注目？</h3>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="text-2xl font-bold text-primary">01</span>
+<p class="leading-relaxed">ゲーム、音楽、映画という強力なエンターテインメントIPを世界中に保有しており、安定した収益源となっています。</p>
+</li>
+<li class="flex gap-4">
+<span class="text-2xl font-bold text-primary">02</span>
+<p class="leading-relaxed">CMOSイメージセンサーで世界シェア首位。スマートフォンや自動運転車など、成長分野のキーデバイスを握っています。</p>
+</li>
+<li class="flex gap-4">
+<span class="text-2xl font-bold text-primary">03</span>
+<p class="leading-relaxed">金融事業を分離し、よりクリエイティビティとテクノロジーに集中する体制へ進化。さらなる成長が期待されます。</p>
+</li>
+</ul>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<!-- News & Social Sentiment -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Sentiment Poll -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm border border-outline-variant/15 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-shrink-0 text-center">
+<h4 class="font-bold mb-2">みんなの予想</h4>
+<div class="text-3xl font-headline font-extrabold text-secondary">強気</div>
+</div>
+<div class="flex-grow w-full">
+<div class="flex justify-between text-xs font-bold mb-2">
+<span class="text-secondary">買い 65%</span>
+<span class="text-outline">様子見 20%</span>
+<span class="text-on-tertiary-container">売り 15%</span>
+</div>
+<div class="h-3 w-full bg-surface-container flex rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container" style="width: 65%"></div>
+<div class="h-full bg-outline-variant/40" style="width: 20%"></div>
+<div class="h-full bg-tertiary-container" style="width: 15%"></div>
+</div>
+<div class="flex justify-center gap-8 mt-4">
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary">thumb_up</span>
+</div>
+<span class="text-[10px]">買い</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-outline">pause</span>
+</div>
+<span class="text-[10px]">保留</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">thumb_down</span>
+</div>
+<span class="text-[10px]">売り</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Recent News -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm border border-outline-variant/15">
+<h3 class="font-headline font-bold text-lg mb-6">最新のニュース</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+<img alt="News article image" class="w-full h-full object-cover" data-alt="professional modern technology office workspace with multiple high resolution screens and sleek minimalist furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBARsRfv-JMtsZeeF9hi2dtmL6ijLektvqRM4kx78SJMxfoJ38vH9fdIduz6JAt8S_KNbmro7yp3-w1YTw_ryz3KLJGLBsHYrihhQlx6BUEFc_CeoSgFLbA_iP7xwsDVewqg5Hdk5M3JcqHYTfuOJ9pzRxts0hKsDtgVGg74s9qrwUzXvb9tb4xYBCHoAfbKP8UTTFJwvlfgGe6at7RQOldgadk3P0CZijhf6gsZnTKWkxFHvMIDoOEsBWUPmH9f_wmS2D7V2gj1GM"/>
+</div>
+<div class="flex-grow">
+<div class="text-xs text-outline mb-1">日本経済新聞 • 2時間前</div>
+<h4 class="font-bold group-hover:text-primary transition-colors leading-tight">ソニー、次世代イメージセンサーの量産化を加速。EV市場への供給拡大へ。</h4>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded overflow-hidden flex-shrink-0">
+<img alt="News article image" class="w-full h-full object-cover" data-alt="abstract digital connection network representing global entertainment and streaming media data flow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlgL87iiYk_ou01vatxwapkPP2qsU8__bzeW-IVWw2G8mw008qBRwnZ7KRqkUqNzPJJNh7eN8M4iw805Vxy2ex1g8Jx3bwwmHvd47zaOZAjDaDNszVbRlekQSQUOkSKThkXEsy0DDdo22HcDLgSUbqjmcdncldC3eMp9Dku36sPNzz4rGCi4KIETHlaCXNQVZ_skA2ovFlaHLj9zOtxmXDUpwi-dFBNO_y22ky4i1BNTesfgpfiBU70UeGoXCVLWoOC5ydqQertSk"/>
+</div>
+<div class="flex-grow">
+<div class="text-xs text-outline mb-1">ロイター • 5時間前</div>
+<h4 class="font-bold group-hover:text-primary transition-colors leading-tight">エンタメ事業の好調が継続。音楽ストリーミングのロイヤリティ収入が想定を上回る。</h4>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-primary font-bold border border-primary/20 rounded-full hover:bg-primary/5 transition-all">すべてのニュースを見る</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto py-12 bg-surface-container shadow-inner">
+<div class="w-full flex flex-col items-center gap-4 px-8">
+<div class="text-base font-semibold text-slate-400">The Lucid Investor</div>
+<div class="flex gap-6 text-sm font-label tracking-wider">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">利用規約</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">プライバシーポリシー</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">ヘルプセンター</a>
+</div>
+<p class="text-sm font-label text-slate-500 mt-4 opacity-75">© 2024 The Lucid Investor. 投資は自己責任でお願いします。</p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-nav z-50 flex justify-around items-center py-3">
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold">ホーム</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[10px]">探索</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+<span class="text-[10px]">ウォッチ</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px]">会員</span>
+</div>
+</nav>
+</body></html>

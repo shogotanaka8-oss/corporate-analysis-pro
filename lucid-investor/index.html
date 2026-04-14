@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Lucid Investor - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dbe9ff",
+                    "outline": "#6e7980",
+                    "on-surface": "#0d1c2d",
+                    "tertiary-fixed-dim": "#ffafd3",
+                    "on-tertiary-fixed": "#3d0026",
+                    "inverse-on-surface": "#e9f1ff",
+                    "tertiary-fixed": "#ffd8e7",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#233143",
+                    "on-primary-fixed": "#001e2c",
+                    "on-tertiary-container": "#811057",
+                    "tertiary": "#a43073",
+                    "surface-container-highest": "#d4e4fa",
+                    "outline-variant": "#bdc8d1",
+                    "tertiary-container": "#ff8cc5",
+                    "secondary": "#006c4b",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d4e4fa",
+                    "surface-dim": "#ccdbf2",
+                    "surface-tint": "#00668a",
+                    "inverse-primary": "#7bd0ff",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#3e484f",
+                    "primary-container": "#38bdf8",
+                    "on-primary-container": "#004965",
+                    "secondary-fixed": "#68fcbf",
+                    "secondary-container": "#64f9bc",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#00714e",
+                    "on-primary-fixed-variant": "#004c69",
+                    "on-secondary-fixed": "#002114",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-tertiary-fixed-variant": "#85145a",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "surface-container": "#e5efff",
+                    "surface-container-low": "#eef4ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#45dfa4",
+                    "background": "#f8f9ff",
+                    "primary": "#00668a",
+                    "primary-fixed": "#c4e7ff",
+                    "on-background": "#0d1c2d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f8f9ff]/70 backdrop-blur-xl shadow-sm font-['Plus_Jakarta_Sans'] tracking-[-0.02em]">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold text-[#00668a]">The Lucid Investor</div>
+<div class="hidden md:flex flex-1 max-w-md mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary-container" placeholder="企業名、証券コードで検索" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-sky-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-sky-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#eef4ff] rounded-r-3xl shadow-xl z-40 hidden lg:flex flex-col p-4 font-['Inter'] leading-relaxed">
+<div class="pt-20 pb-8 px-4">
+<div class="flex items-center gap-3 mb-2">
+<img alt="ユーザー" class="w-10 h-10 rounded-full bg-white shadow-sm" data-alt="clean minimalist vector avatar of a person with friendly expression for a professional user profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApHoeyPpsHGscBgl9mQegUVNuUzM1to74E0jVOweEAi5dUseewC4qZ3nIOLhhxL_9_Eo97Amh-scdG3gvicQTeXinE8C41Y_-cRUeWzCnQ-ljKgw1dOYuOPH6vSYESZ5NL-1bwq2aPoKEcjaH5utPCMxPUf9x3ckN-UFBvYhNpp9MhIM2Um_4YdIBrKlG7oJgYPBElRulvTXR1WT4rmv5VFk_L2ShVrlDQ2pdLzCRVV2zV72aeXhRFmHZIwPKY4dxT5M6BD2QT68Y"/>
+<div>
+<p class="text-xs text-slate-600">こんにちは</p>
+<p class="text-sm font-bold text-[#00668a]">投資の旅を続けましょう</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 bg-white text-[#00668a] rounded-full px-4 py-3 shadow-sm hover:translate-x-1 transition-transform duration-300" href="index.html">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-medium">ホーム</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="search.html">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span>探索</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="watchlist.html">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+<span>ウォッチリスト</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span>ニュース</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>プロフィール</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-white/50 rounded-2xl">
+<p class="text-xs text-slate-500 mb-3 leading-snug">あなたの投資スキルをさらにアップさせませんか？</p>
+<button class="w-full py-2 bg-gradient-to-br from-primary to-primary-container text-white rounded-full text-sm font-bold shadow-sm active:opacity-80 transition-opacity">
+                投資を学ぶ
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-24 pb-12 px-6">
+<div class="max-w-6xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="bg-surface-container-highest rounded-xl p-8 md:p-12 relative overflow-hidden">
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-3xl md:text-4xl font-headline font-extrabold text-on-surface leading-tight tracking-[-0.02em] mb-4">
+                            こんにちは、[ユーザー名]さん。<br/>今日も自分に合った企業を探してみましょう。
+                        </h1>
+<p class="text-on-surface-variant font-body">
+                            あなたの価値観に寄り添う投資。データと感性を結びつけます。
+                        </p>
+</div>
+<div class="absolute right-0 bottom-0 w-1/3 h-full opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[15rem] leading-none text-primary transform translate-y-1/4 translate-x-1/4" data-icon="auto_graph">auto_graph</span>
+</div>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column (Featured & Categories) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Trending Stocks -->
+<section>
+<div class="flex justify-between items-end mb-6 px-2">
+<h2 class="text-xl font-headline font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+                                注目・トレンド
+                            </h2>
+<button class="text-sm font-medium text-primary hover:underline">すべて見る</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Stock Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold text-lg">T</div>
+<div>
+<h3 class="font-bold text-lg">トヨタ自動車</h3>
+<p class="text-xs text-slate-500">7203.T</p>
+</div>
+</div>
+<div class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold font-jakarta">
+                                        +2.45%
+                                    </div>
+</div>
+<div class="flex items-end justify-between">
+<p class="text-2xl font-jakarta font-bold">¥3,420.0</p>
+<div class="w-24 h-8 bg-secondary-container/20 rounded relative overflow-hidden">
+<!-- Placeholder Sparkline -->
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-secondary/10 to-transparent"></div>
+<svg class="w-full h-full text-secondary" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 30 Q 20 10 40 25 T 100 5" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Stock Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold text-lg">S</div>
+<div>
+<h3 class="font-bold text-lg">ソニーG</h3>
+<p class="text-xs text-slate-500">6758.T</p>
+</div>
+</div>
+<div class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold font-jakarta">
+                                        +1.12%
+                                    </div>
+</div>
+<div class="flex items-end justify-between">
+<p class="text-2xl font-jakarta font-bold">¥13,150.0</p>
+<div class="w-24 h-8 bg-secondary-container/20 rounded relative overflow-hidden">
+<svg class="w-full h-full text-secondary" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 35 Q 30 25 50 30 T 100 15" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Stock Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold text-lg">N</div>
+<div>
+<h3 class="font-bold text-lg">任天堂</h3>
+<p class="text-xs text-slate-500">7974.T</p>
+</div>
+</div>
+<div class="px-2 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-xs font-bold font-jakarta">
+                                        -0.54%
+                                    </div>
+</div>
+<div class="flex items-end justify-between">
+<p class="text-2xl font-jakarta font-bold">¥7,845.0</p>
+<div class="w-24 h-8 bg-tertiary-container/20 rounded relative overflow-hidden">
+<svg class="w-full h-full text-tertiary" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 10 Q 40 15 60 30 T 100 35" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Stock Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/15 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold text-lg">F</div>
+<div>
+<h3 class="font-bold text-lg">ファストリ</h3>
+<p class="text-xs text-slate-500">9983.T</p>
+</div>
+</div>
+<div class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold font-jakarta">
+                                        +3.88%
+                                    </div>
+</div>
+<div class="flex items-end justify-between">
+<p class="text-2xl font-jakarta font-bold">¥41,200.0</p>
+<div class="w-24 h-8 bg-secondary-container/20 rounded relative overflow-hidden">
+<svg class="w-full h-full text-secondary" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 38 L 20 30 L 50 15 L 80 18 L 100 5" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Categories -->
+<section>
+<h2 class="text-xl font-headline font-bold mb-6 px-2">カテゴリーから探す</h2>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<button class="flex flex-col items-center justify-center gap-3 p-6 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="payments">payments</span>
+<span class="text-sm font-bold">高配当</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="card_giftcard">card_giftcard</span>
+<span class="text-sm font-bold">優待</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="memory">memory</span>
+<span class="text-sm font-bold">AI・IT</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="eco">eco</span>
+<span class="text-sm font-bold">再生エネルギー</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Right Column (Sidebar widgets) -->
+<div class="space-y-8">
+<!-- Market Summary Card -->
+<section class="bg-surface-container-low p-6 rounded-lg relative overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline font-bold">日経平均株価</h2>
+<div class="flex items-center gap-1 px-3 py-1 bg-white rounded-full text-[10px] font-bold text-secondary uppercase tracking-wider shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                                Stable
+                            </div>
+</div>
+<div class="mb-4">
+<p class="text-3xl font-jakarta font-extrabold text-on-surface tracking-tight">38,707.87</p>
+<p class="text-sm font-jakarta text-secondary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span>
+                                +210.55 (0.55%)
+                            </p>
+</div>
+<!-- Mini Chart Visual -->
+<div class="h-32 w-full mt-6 flex items-end justify-between gap-1">
+<div class="flex-1 bg-primary/10 rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-primary/10 rounded-t-sm h-[55%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[45%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm h-[60%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[75%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm h-[65%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm h-[85%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[90%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[70%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm h-[80%]"></div>
+<div class="flex-1 bg-primary/70 rounded-t-sm h-[95%]"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[100%]"></div>
+</div>
+<p class="text-[10px] text-center text-slate-400 mt-2 font-jakarta">2024/05/22 Market Close</p>
+</section>
+<!-- Educational Tip of the Day -->
+<section class="bg-gradient-to-br from-primary to-[#004965] p-6 rounded-lg text-white shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-container" data-icon="lightbulb">lightbulb</span>
+<span class="text-xs font-bold tracking-widest uppercase opacity-80">今日の投資用語</span>
+</div>
+<h3 class="text-2xl font-headline font-extrabold mb-3">PERとは？</h3>
+<p class="text-sm leading-relaxed text-blue-50/90 font-body">
+                                会社が「稼ぐ力」に対して、今の株価が割安か割高かを判断する指標です。
+                                一般的に「15倍」が目安と言われますが、業界によっても変わります。
+                            </p>
+<button class="mt-6 text-xs font-bold px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/20">
+                                詳しく学ぶ
+                            </button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-6 -right-6 text-9xl text-white/5 rotate-12" data-icon="menu_book">menu_book</span>
+</section>
+<!-- User Stats/Engagement (Bonus) -->
+<section class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/15">
+<h3 class="font-bold mb-4 text-sm">あなたの学習状況</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500 font-medium">投資家ランク: 初心者</span>
+<span class="text-primary font-bold">65%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[65%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-around py-2">
+<div class="text-center">
+<p class="text-lg font-jakarta font-bold">12</p>
+<p class="text-[10px] text-slate-500">閲覧企業</p>
+</div>
+<div class="w-px h-8 bg-slate-100"></div>
+<div class="text-center">
+<p class="text-lg font-jakarta font-bold">5</p>
+<p class="text-[10px] text-slate-500">保存記事</p>
+</div>
+<div class="w-px h-8 bg-slate-100"></div>
+<div class="text-center">
+<p class="text-lg font-jakarta font-bold">3</p>
+<p class="text-[10px] text-slate-500">連続日数</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="lg:ml-64 bg-[#f8f9ff] py-12 border-t border-slate-200/15 w-full mt-auto font-['Inter'] tracking-wider">
+<div class="w-full flex flex-col items-center gap-4 px-8 max-w-screen-2xl mx-auto">
+<div class="text-base font-semibold text-slate-400">The Lucid Investor</div>
+<div class="flex gap-6">
+<a class="text-slate-500 text-sm hover:text-sky-600 transition-colors" href="#">利用規約</a>
+<a class="text-slate-500 text-sm hover:text-sky-600 transition-colors" href="#">プライバシーポリシー</a>
+<a class="text-slate-500 text-sm hover:text-sky-600 transition-colors" href="#">ヘルプセンター</a>
+</div>
+<p class="text-xs text-slate-400 mt-4">© 2024 The Lucid Investor. 投資は自己責任でお願いいたします。</p>
+</div>
+</footer>
+</body></html>

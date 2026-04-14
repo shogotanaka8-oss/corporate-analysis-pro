@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>企業分析プロ - The Lucid Investor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#6e7980",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#ff8cc5",
+                        "surface-container-high": "#dbe9ff",
+                        "surface-variant": "#d4e4fa",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#7bd0ff",
+                        "on-secondary-container": "#00714e",
+                        "primary-container": "#38bdf8",
+                        "on-primary-fixed-variant": "#004c69",
+                        "error": "#ba1a1a",
+                        "secondary": "#006c4b",
+                        "on-primary-fixed": "#001e2c",
+                        "outline-variant": "#bdc8d1",
+                        "inverse-surface": "#233143",
+                        "inverse-primary": "#7bd0ff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "tertiary": "#a43073",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary-fixed-variant": "#85145a",
+                        "on-tertiary-fixed": "#3d0026",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#c4e7ff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e5efff",
+                        "surface": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-container": "#004965",
+                        "secondary-fixed": "#68fcbf",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#00668a",
+                        "inverse-on-surface": "#e9f1ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffafd3",
+                        "surface-dim": "#ccdbf2",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-container": "#811057",
+                        "tertiary-fixed": "#ffd8e7",
+                        "secondary-fixed-dim": "#45dfa4",
+                        "surface-container-highest": "#d4e4fa",
+                        "on-surface-variant": "#3e484f",
+                        "on-surface": "#0d1c2d",
+                        "primary": "#00668a",
+                        "secondary-container": "#64f9bc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#0d1c2d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus { outline: none; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dbe9ff; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f8f9ff]/70 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 py-3">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tighter text-[#00668a] font-headline">The Lucid Investor</span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-headline tracking-tight text-slate-500">
+<a class="text-[#00668a] font-bold border-b-2 border-[#00668a]" href="#">Home</a>
+<a class="hover:text-sky-600 transition-colors" href="#">Analysis</a>
+<a class="hover:text-sky-600 transition-colors" href="#">Portfolio</a>
+<a class="hover:text-sky-600 transition-colors" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">account_circle</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 hidden lg:flex flex-col gap-2 pr-4 bg-[#f8f9ff]">
+<div class="px-6 py-4 mb-4">
+<h2 class="font-headline font-bold text-[#00668a] text-lg">Analysis Pro</h2>
+<p class="text-xs text-slate-500">Deep Dive Module</p>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 bg-[#d4e4fa] text-[#00668a] rounded-r-full font-semibold transition-transform duration-200 hover:translate-x-1" href="#profile">
+<span class="material-symbols-outlined">factory</span>
+<span class="text-sm">Company Profile</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-[#eef4ff] rounded-r-full transition-transform duration-200 hover:translate-x-1" href="#business">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-sm">Business Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-[#eef4ff] rounded-r-full transition-transform duration-200 hover:translate-x-1" href="#financials">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="text-sm">Financial Health</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-[#eef4ff] rounded-r-full transition-transform duration-200 hover:translate-x-1" href="#risk">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-sm">Risk Assessment</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-[#eef4ff] rounded-r-full transition-transform duration-200 hover:translate-x-1" href="#valuation">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm">Valuation Hub</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-32 px-6 md:px-12 max-w-7xl">
+<!-- Hero Header -->
+<header class="mb-12">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold mb-4 uppercase tracking-widest">Analysis Mode</span>
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight mb-4">企業分析ワークスペース</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">
+                複雑な財務データを整理し、本質的な価値を見極めるためのプロフェッショナル・ツールです。落ち着いた環境で、企業の未来を洞察しましょう。
+            </p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Section 0: Company Header -->
+<section class="md:col-span-12" id="profile">
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-label font-bold text-outline uppercase tracking-wider">会社名 / Company Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all placeholder:text-slate-400" placeholder="例: 株式会社ルーシッド" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-label font-bold text-outline uppercase tracking-wider">ティッカー / Ticker</label>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all" placeholder="7777" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-label font-bold text-outline uppercase tracking-wider">業界 / Industry</label>
+<select class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all">
+<option>テクノロジー</option>
+<option>製造業</option>
+<option>ヘルスケア</option>
+<option>金融</option>
+<option>消費財</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 1: Business Analysis -->
+<section class="md:col-span-7 space-y-6" id="business">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">query_stats</span>
+<h3 class="font-headline font-bold text-xl">定性分析：事業の優位性</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-8">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-headline font-semibold text-on-surface">市場の機会 / Market Opportunity</label>
+<span class="material-symbols-outlined text-outline text-sm cursor-help" title="市場の成長性や規模を記述します">info</span>
+</div>
+<textarea class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all resize-none" placeholder="市場のトレンドや成長ドライバーについて..." rows="4"></textarea>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-headline font-semibold text-on-surface">競合優位性 / Competitive Advantage</label>
+<span class="material-symbols-outlined text-outline text-sm cursor-help" title="他社が真似できない強み（堀）について">info</span>
+</div>
+<textarea class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all resize-none" placeholder="ブランド力、特許、ネットワーク効果など..." rows="4"></textarea>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-headline font-semibold text-on-surface">経営陣 / Management Team</label>
+<span class="material-symbols-outlined text-outline text-sm cursor-help" title="経営者の実績やビジョンについて">info</span>
+</div>
+<textarea class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all resize-none" placeholder="CEOの経歴や資本配分の考え方..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- Section 2: Financial Health -->
+<section class="md:col-span-5 space-y-6" id="financials">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+<h3 class="font-headline font-bold text-xl">定量分析：財務健全性</h3>
+</div>
+<div class="bg-surface-container-low rounded-lg p-8 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">売上高</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 text-sm font-headline" placeholder="0" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">営業利益率 (%)</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 text-sm font-headline" placeholder="0.0" type="number"/>
+</div>
+</div>
+<div class="space-y-4 pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-on-surface-variant">ROE</span>
+<span class="material-symbols-outlined text-[14px] text-outline cursor-help" title="自己資本利益率">info</span>
+</div>
+<input class="w-24 bg-surface-container-lowest border-none rounded-lg p-2 text-right text-sm font-headline" placeholder="0%" type="number"/>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-on-surface-variant">ROIC</span>
+<span class="material-symbols-outlined text-[14px] text-outline cursor-help" title="投下資本利益率">info</span>
+</div>
+<input class="w-24 bg-surface-container-lowest border-none rounded-lg p-2 text-right text-sm font-headline" placeholder="0%" type="number"/>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-on-surface-variant">D/Eレシオ</span>
+</div>
+<input class="w-24 bg-surface-container-lowest border-none rounded-lg p-2 text-right text-sm font-headline" placeholder="0.0" type="number"/>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-on-surface-variant">配当利回り</span>
+</div>
+<input class="w-24 bg-surface-container-lowest border-none rounded-lg p-2 text-right text-sm font-headline" placeholder="0%" type="number"/>
+</div>
+</div>
+<div class="p-4 bg-primary-container/10 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<p class="text-xs leading-relaxed text-on-primary-container">
+<strong>メンターのアドバイス:</strong> 一般的に、ROICが資本コストを上回っている企業は、価値を創造していると言えます。15%以上を目安にしましょう。
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Valuation Hub -->
+<section class="md:col-span-12 space-y-6" id="valuation">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-headline font-bold text-xl">バリュエーション：適正価格の算出</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Calculator Inputs -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-lg p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">現在 PER</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 font-headline" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">過去 PER平均</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 font-headline" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">目標 PER</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 font-headline" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-outline tracking-widest uppercase">予想 EPS</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 font-headline" type="number"/>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10 flex flex-wrap gap-8">
+<div class="space-y-1">
+<p class="text-xs text-outline font-medium">現在株価</p>
+<p class="text-2xl font-headline font-bold">¥ 4,500</p>
+</div>
+<div class="space-y-1">
+<p class="text-xs text-outline font-medium">算出された適正株価</p>
+<p class="text-2xl font-headline font-bold text-primary">¥ 5,800</p>
+</div>
+<div class="space-y-1">
+<p class="text-xs text-outline font-medium">アップサイド</p>
+<p class="text-2xl font-headline font-bold text-on-secondary-container bg-secondary-container px-3 rounded-lg">+ 28.8%</p>
+</div>
+</div>
+</div>
+<!-- Visual Guide -->
+<div class="bg-primary/5 rounded-lg p-8 border border-primary/10 flex flex-col justify-center items-center text-center">
+<div class="w-32 h-32 rounded-full border-[10px] border-primary border-t-primary-container mb-6 flex items-center justify-center">
+<span class="text-xl font-headline font-bold">Safe</span>
+</div>
+<h4 class="font-headline font-bold mb-2">安全域の確保</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">算出された適正株価に対し、現在の株価は「割安」の状態にあります。投資の安全域が確保されています。</p>
+</div>
+</div>
+</section>
+<!-- Section 4: Risk & Conclusion -->
+<section class="md:col-span-12 space-y-6" id="risk">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">warning</span>
+<h3 class="font-headline font-bold text-xl">リスク評価と結論</h3>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-6">
+<div class="space-y-3">
+<label class="font-headline font-semibold">主要なリスク / Key Risks</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all" placeholder="規制、競合、マクロ経済の影響など..." rows="3"></textarea>
+</div>
+<div class="space-y-3">
+<label class="font-headline font-semibold">投資テーマ / Investment Thesis</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-DEFAULT p-4 text-on-surface focus:ring-2 focus:ring-surface-tint transition-all" placeholder="なぜ今、この企業を買うのか？" rows="3"></textarea>
+</div>
+</div>
+<div class="bg-surface-container-highest rounded-lg p-8 flex flex-col justify-between">
+<div>
+<label class="font-headline font-bold text-lg mb-6 block">投資の確信度 / Conviction Level</label>
+<div class="flex gap-4 mb-8">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-4xl text-outline-variant">star</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-low py-4 rounded-full font-headline font-bold text-on-surface-variant hover:bg-surface-container-high transition-all">
+                                下書き保存
+                            </button>
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container py-4 rounded-full font-headline font-bold text-white shadow-lg hover:shadow-primary/20 transition-all scale-100 active:scale-95">
+                                分析を完了する
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#f8f9ff]/80 backdrop-blur-2xl z-50 rounded-t-[2rem] shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col items-center justify-center bg-[#d4e4fa] text-[#00668a] rounded-2xl px-6 py-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-6 py-2">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Analysis</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-6 py-2">
+<span class="material-symbols-outlined">pie_chart</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Portfolio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-6 py-2">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Settings</span>
+</div>
+</nav>
+<!-- Floating Action Button Contextual (Hidden on detail screens usually, but here as a 'Save' shortcut) -->
+<div class="fixed bottom-28 right-8 lg:bottom-12 lg:right-12">
+<button class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform active:scale-90">
+<span class="material-symbols-outlined">save</span>
+</button>
+</div>
+</body></html>

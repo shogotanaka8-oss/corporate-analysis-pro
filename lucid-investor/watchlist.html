@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dbe9ff",
+                    "outline": "#6e7980",
+                    "on-surface": "#0d1c2d",
+                    "tertiary-fixed-dim": "#ffafd3",
+                    "on-tertiary-fixed": "#3d0026",
+                    "inverse-on-surface": "#e9f1ff",
+                    "tertiary-fixed": "#ffd8e7",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#233143",
+                    "on-primary-fixed": "#001e2c",
+                    "on-tertiary-container": "#811057",
+                    "tertiary": "#a43073",
+                    "surface-container-highest": "#d4e4fa",
+                    "outline-variant": "#bdc8d1",
+                    "tertiary-container": "#ff8cc5",
+                    "secondary": "#006c4b",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d4e4fa",
+                    "surface-dim": "#ccdbf2",
+                    "surface-tint": "#00668a",
+                    "inverse-primary": "#7bd0ff",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#3e484f",
+                    "primary-container": "#38bdf8",
+                    "on-primary-container": "#004965",
+                    "secondary-fixed": "#68fcbf",
+                    "secondary-container": "#64f9bc",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#00714e",
+                    "on-primary-fixed-variant": "#004c69",
+                    "on-secondary-fixed": "#002114",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-tertiary-fixed-variant": "#85145a",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "surface-container": "#e5efff",
+                    "surface-container-low": "#eef4ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#45dfa4",
+                    "background": "#f8f9ff",
+                    "primary": "#00668a",
+                    "primary-fixed": "#c4e7ff",
+                    "on-background": "#0d1c2d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sparkline-up {
+            stroke: #00714e;
+            fill: none;
+            stroke-width: 2;
+        }
+        .sparkline-down {
+            stroke: #811057;
+            fill: none;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f8f9ff]/70 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold text-[#00668a] font-headline tracking-[-0.02em]">
+                The Lucid Investor
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:bg-sky-50 px-3 py-1 rounded transition-colors duration-200" href="index.html">ホーム</a>
+<a class="text-slate-500 hover:bg-sky-50 px-3 py-1 rounded transition-colors duration-200" href="search.html">探索</a>
+<a class="text-[#00668a] font-bold border-b-2 border-sky-500 px-3 py-1" href="watchlist.html">ウォッチリスト</a>
+<a class="text-slate-500 hover:bg-sky-50 px-3 py-1 rounded transition-colors duration-200" href="#">ニュース</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-sky-50 p-2 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-sky-50 p-2 rounded-full transition-colors">help_outline</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="ユーザープロフィール" data-alt="minimalist 3d avatar of a professional investor with a friendly expression and stylish glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrW6-BAihxFa2taM0luGv_rpbU4_wdDfHNHlb8R6mGE7imyVvffZwOLpgYhhCdru7h9uYeJkp87iHoOZcGbbBMBd9vTlrLAthoLj6NZoV86Jvg2vbqNlM-J3QhmuB0Cpr5BsiqWoPQhCmofYI-0U7UfGc_1u-IySixVc35XLqADFnshhwox5g4q66Iz6qdsQaVMJQuCCOHR6GB0gB4_DAzpj1SlRfz_Q8zX9EheXIwX6-7X4617CCEZD-XuWehsK9MtFQUioRs5rk"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Bar (Desktop) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 z-40 hidden lg:flex bg-[#eef4ff] w-64 rounded-r-3xl shadow-xl pt-20">
+<div class="mb-8 px-4">
+<h2 class="font-headline font-black text-lg text-[#00668a]">こんにちは</h2>
+<p class="text-xs text-slate-600">投資の旅を続けましょう</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span>ホーム</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="search.html">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span>探索</span>
+</a>
+<a class="flex items-center gap-3 bg-white text-[#00668a] rounded-full px-4 py-3 shadow-sm font-bold" href="watchlist.html">
+<span class="material-symbols-outlined" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span>ウォッチリスト</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span>ニュース</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 px-4 py-3 hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>プロフィール</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary-container/20 rounded-lg">
+<p class="text-sm font-medium mb-3">学びを深める</p>
+<button class="w-full py-2 bg-gradient-to-br from-primary to-primary-container text-white rounded-full text-sm font-semibold shadow-md active:scale-95 transition-all">
+                投資を学ぶ
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline text-4xl font-extrabold tracking-tight mb-2 text-on-surface">マイ・ポートフォリオ</h1>
+<p class="text-on-surface-variant font-medium">市場の動向をスマートに追跡します</p>
+</div>
+<!-- Bento-style Insights Panel -->
+<div class="bg-surface-container-high p-6 rounded-lg md:max-w-md w-full relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-6xl">insights</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+<span class="text-xs tracking-wider uppercase">AI Insight</span>
+</div>
+<p class="text-on-surface leading-relaxed font-semibold">
+                        あなたのリストの傾向：IT企業に注目していますね！
+                    </p>
+</div>
+</div>
+</header>
+<!-- Dynamic Tabs -->
+<div class="flex gap-4 mb-8">
+<button class="px-8 py-3 bg-white shadow-sm rounded-full text-primary font-bold border-2 border-primary-container/30">
+                ウォッチリスト
+            </button>
+<button class="px-8 py-3 bg-surface-container-low text-on-surface-variant rounded-full font-medium hover:bg-surface-container-high transition-colors">
+                保有資産
+            </button>
+</div>
+<!-- Portfolio Table / List -->
+<div class="bg-white rounded-lg shadow-sm overflow-hidden mb-12">
+<div class="p-6 overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant text-xs font-bold border-b border-surface-container/50">
+<th class="pb-4 px-2">銘柄</th>
+<th class="pb-4 px-2 text-right">現在値</th>
+<th class="pb-4 px-2 text-right">前日比</th>
+<th class="pb-4 px-2 text-right">騰落率</th>
+<th class="pb-4 px-2 text-center">トレンド</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container/30">
+<!-- Stock Row 1 -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-5 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-headline font-bold text-primary">A</div>
+<div>
+<div class="font-headline font-bold text-on-surface">Apple Inc.</div>
+<div class="text-xs text-on-surface-variant">AAPL • NASDAQ</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="font-headline font-bold">$189.43</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-secondary-container font-semibold text-on-secondary-container bg-secondary-container/30 px-2 py-1 rounded-md inline-block">
+                                    +$2.45
+                                </div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-on-secondary-container font-bold">+1.31%</div>
+</td>
+<td class="py-5 px-2">
+<div class="flex justify-center">
+<svg class="sparkline-up" height="30" viewbox="0 0 80 30" width="80">
+<path d="M0,25 Q10,20 20,22 T40,15 T60,10 T80,5" fill="none"></path>
+</svg>
+</div>
+</td>
+</tr>
+<!-- Stock Row 2 -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-5 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-headline font-bold text-primary">M</div>
+<div>
+<div class="font-headline font-bold text-on-surface">Microsoft Corp</div>
+<div class="text-xs text-on-surface-variant">MSFT • NASDAQ</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="font-headline font-bold">$402.56</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-tertiary-container font-semibold text-on-tertiary-container bg-tertiary-container/30 px-2 py-1 rounded-md inline-block">
+                                    -$1.22
+                                </div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-on-tertiary-container font-bold">-0.30%</div>
+</td>
+<td class="py-5 px-2">
+<div class="flex justify-center">
+<svg class="sparkline-down" height="30" viewbox="0 0 80 30" width="80">
+<path d="M0,5 Q10,10 20,8 T40,18 T60,20 T80,25" fill="none"></path>
+</svg>
+</div>
+</td>
+</tr>
+<!-- Stock Row 3 -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-5 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-headline font-bold text-primary">T</div>
+<div>
+<div class="font-headline font-bold text-on-surface">Tesla, Inc.</div>
+<div class="text-xs text-on-surface-variant">TSLA • NASDAQ</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="font-headline font-bold">$175.40</div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-secondary-container font-semibold text-on-secondary-container bg-secondary-container/30 px-2 py-1 rounded-md inline-block">
+                                    +$5.12
+                                </div>
+</td>
+<td class="py-5 px-2 text-right">
+<div class="text-on-secondary-container font-bold">+3.01%</div>
+</td>
+<td class="py-5 px-2">
+<div class="flex justify-center">
+<svg class="sparkline-up" height="30" viewbox="0 0 80 30" width="80">
+<path d="M0,28 Q10,25 20,20 T40,22 T60,15 T80,2" fill="none"></path>
+</svg>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Action -->
+<div class="p-8 border-t border-surface-container/50 bg-surface-container-lowest flex justify-center">
+<button class="flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span>他の銘柄も探す</span>
+<span class="material-symbols-outlined">explore</span>
+</button>
+</div>
+</div>
+<!-- Secondary Market Context Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm flex flex-col gap-4 border border-surface-container-high/50">
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant tracking-wider uppercase">S&amp;P 500</span>
+<span class="text-on-secondary-container text-sm font-bold bg-secondary-container px-2 py-0.5 rounded">+0.45%</span>
+</div>
+<div class="h-16 w-full opacity-40">
+<svg class="sparkline-up" height="100%" viewbox="0 0 200 60" width="100%">
+<path d="M0,50 L20,45 L40,48 L60,35 L80,38 L100,25 L120,28 L140,15 L160,20 L180,10 L200,5" fill="none" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm flex flex-col gap-4 border border-surface-container-high/50">
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant tracking-wider uppercase">Nasdaq</span>
+<span class="text-on-secondary-container text-sm font-bold bg-secondary-container px-2 py-0.5 rounded">+0.82%</span>
+</div>
+<div class="h-16 w-full opacity-40">
+<svg class="sparkline-up" height="100%" viewbox="0 0 200 60" width="100%">
+<path d="M0,55 L30,45 L60,50 L90,30 L120,35 L150,15 L180,20 L200,2" fill="none" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm flex flex-col gap-4 border border-surface-container-high/50">
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant tracking-wider uppercase">USD/JPY</span>
+<span class="text-on-tertiary-container text-sm font-bold bg-tertiary-container px-2 py-0.5 rounded">-0.12%</span>
+</div>
+<div class="h-16 w-full opacity-40">
+<svg class="sparkline-down" height="100%" viewbox="0 0 200 60" width="100%">
+<path d="M0,10 L40,15 L80,12 L120,25 L160,22 L200,35" fill="none" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto py-12 bg-[#f8f9ff] flex flex-col items-center gap-4 px-8 border-t border-slate-200/15">
+<div class="text-base font-semibold text-slate-400">The Lucid Investor</div>
+<div class="flex gap-6 text-sm font-body tracking-wider text-slate-500">
+<a class="hover:text-sky-400 transition-colors" href="#">利用規約</a>
+<a class="hover:text-sky-400 transition-colors" href="#">プライバシーポリシー</a>
+<a class="hover:text-sky-400 transition-colors" href="#">ヘルプセンター</a>
+</div>
+<div class="text-sm font-body tracking-wider text-slate-500 mt-4 opacity-70">
+            © 2024 The Lucid Investor. 投資は自己責任でお願いします。
+        </div>
+</footer>
+<!-- Mobile Navigation Bar -->
+<nav class="lg:hidden fixed bottom-0 w-full bg-[#f8f9ff]/90 backdrop-blur-xl border-t border-slate-200/10 z-50 flex justify-around items-center py-3 px-2">
+<a class="flex flex-col items-center text-slate-500 gap-1" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">ホーム</span>
+</a>
+<a class="flex flex-col items-center text-slate-500 gap-1" href="search.html">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px]">探索</span>
+</a>
+<a class="flex flex-col items-center text-[#00668a] font-bold gap-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="text-[10px]">リスト</span>
+</a>
+<a class="flex flex-col items-center text-slate-500 gap-1" href="#">
+<span class="material-symbols-outlined">article</span>
+<span class="text-[10px]">ニュース</span>
+</a>
+<a class="flex flex-col items-center text-slate-500 gap-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px]">マイ</span>
+</a>
+</nav>
+</body></html>
